@@ -3,6 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\FornecedoresController;
+use App\Http\Controllers\EstoqueController;
+use App\Http\Controllers\ProdutosController;
+
 
 Route::get('/', function () {
     return view('welcome');
