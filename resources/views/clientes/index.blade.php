@@ -1,6 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Nossa Confecção</h2>
+
+        <a href="{{ route('clientes.create') }}" class="px-2 py-1 bg-gray-200 text-gray-700 text-sm rounded-md hover:bg-gray-300 transition">
+        Novo Cliente
+        </a>
+
     </x-slot>
 
     <div class="py-12">
