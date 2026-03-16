@@ -6,23 +6,17 @@ use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\EstoqueController;
 use App\Http\Controllers\FornecedoresController;
 use App\Http\Controllers\PedidosController;
-use App\Http\Controllers\ProdutosController;
-
-
-// rota para mostrar o formulario
-Route::get('/clientes/create', [ClientesController::class,'create']) ->name('clientes.create');
-Route::resource('estoque', EstoqueController::class);
-Route::resource('fornecedores', FornecedoresController::class);
-Route::resource('pedidos', PedidosController::class);
-Route::resource('produtos', EstoqueController::class);
+use App\Http\Controllers\ProdutosController; // ← adicione aqui
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
-
-Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
+Route::resource('clientes', ClientesController::class);
+Route::resource('estoque', EstoqueController::class);
+Route::resource('fornecedores', FornecedoresController::class);
+Route::resource('pedidos', PedidosController::class);
+Route::resource('produtos', ProdutosController::class); // ← adicione aqui
 
 Route::get('/dashboard', function () {
     return view('dashboard');

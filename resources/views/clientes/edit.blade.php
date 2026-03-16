@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Novo Item no Estoque</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Editar Item do Estoque</h2>
     </x-slot>
 
     <div class="py-12">
@@ -17,30 +17,31 @@
                     </div>
                 @endif
 
-                <form action="{{ route('estoque.store') }}" method="POST">
+                <form action="{{ route('estoque.update', $estoque->id) }}" method="POST" class="space-y-4">
                     @csrf
+                    @method('PUT')
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Nome</label>
-                        <input type="text" name="nome" value="{{ old('nome') }}"
+                        <input type="text" name="nome" value="{{ old('nome', $estoque->nome) }}"
                             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Descrição</label>
                         <textarea name="descricao" rows="3"
-                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('descricao') }}</textarea>
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('descricao', $estoque->descricao) }}</textarea>
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Quantidade</label>
-                        <input type="number" name="quantidade" value="{{ old('quantidade', 0) }}" min="0"
+                        <input type="number" name="quantidade" value="{{ old('quantidade', $estoque->quantidade) }}" min="0"
                             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Preço Unitário (R$)</label>
-                        <input type="number" name="preco_unitario" value="{{ old('preco_unitario', '0.00') }}" step="0.01" min="0"
+                        <input type="number" name="preco_unitario" value="{{ old('preco_unitario', $estoque->preco_unitario) }}" step="0.01" min="0"
                             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
 
@@ -54,6 +55,16 @@
                             Cancelar
                         </a>
                     </div>
+                </form>
+
+                <form action="{{ route('estoque.destroy', $estoque->id) }}" method="POST" class="mt-4"
+                    onsubmit="return confirm('Tem certeza que deseja excluir este item?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"
+                        class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition">
+                        🗑️ Excluir Item
+                    </button>
                 </form>
 
             </div>

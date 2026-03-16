@@ -7,10 +7,12 @@ use App\Models\Estoque;
 class EstoqueController extends Controller
 {
     public function index()
-    {
-        $estoques = Estoque::all();
-        return view('estoque.index', compact('estoques'));
-    }
+{
+    $estoques = Estoque::paginate(10);
+    return view('estoque.index', compact('estoques')); // ← corrigido
+}
+
+
 
     public function create()
     {
